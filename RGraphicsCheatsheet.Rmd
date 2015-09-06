@@ -1,0 +1,8 @@
+---
+title: "R Graphcis Cheatsheet"
+author: "Kevan Doyle"
+date: "September 6, 2015"
+output: pdf_document
+---
+
+#Hello World
