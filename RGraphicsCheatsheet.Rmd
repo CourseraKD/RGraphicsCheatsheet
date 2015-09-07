@@ -2,7 +2,44 @@
 title: "R Graphcis Cheatsheet"
 author: "Kevan Doyle"
 date: "September 6, 2015"
-output: pdf_document
+output: 
+    pdf_document:
+        includes:
+            in_header: myheader.sty
+classoption: landscape
 ---
+\raggedright
+\footnotesize
 
-#Hello World
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+% -------------------------------------------------------------------
+\section{par}
+\begin{tabular}[t]{@{}p{0.05\textwidth}p{0.25\textwidth}@{}}
+\hline
+\verb|adj| & 0=left, 0.5=center, 1=right-justified \\
+\verb|ann| & FALSE=no annotation \\
+\verb|bg| & background color \\
+\verb|bty| & box around plots: characters o,1,7,c,u,j,n \\
+\verb|cex| & amount to magnify text and symbols \\
+\verb|cex.axis| & amount to magnify axis annotation relative to cex \\
+\verb|cex.lab| & amount to magnify x \& y labels relative to cex \\
+\verb|cex.main| & amount to magnify main titles relative to cex \\
+\verb|cex.sub| & amount to magnify main sub-titles relative to cex \\
+\hline
+\verb||
+\end{tabular}
+\vfill\columnbreak
+
+
+
+\end{multicols}
