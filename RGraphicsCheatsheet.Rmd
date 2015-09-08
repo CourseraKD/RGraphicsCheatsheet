@@ -7,40 +7,174 @@ output:
         includes:
             in_header: myheader.sty
         keep_tex: true
+geometry: margin=0.5in
 classoption: landscape
 ---
+
+[//]: A comment
+
 \raggedright
 \footnotesize
 
-\begin{multicols}{3}
 
-
-% multicol parameters
-% These lengths are set only within the two main columns
-%\setlength{\columnseprule}{0.25pt}
+<!-- multicol parameters -->
+<!-- These lengths are set only within the two main columns -->
+\setlength{\columnseprule}{0.25pt}
 \setlength{\premulticols}{1pt}
 \setlength{\postmulticols}{1pt}
 \setlength{\multicolsep}{1pt}
 \setlength{\columnsep}{2pt}
 
-% -------------------------------------------------------------------
+\begin{multicols}{3}[\section{Base Package Graphics}]
+\raggedcolumns
+
+\newlength{\widthleftcol}
+\newlength{\widthrightcol}
 \section{par}
-\begin{tabular}[t]{@{}p{0.05\textwidth}p{0.25\textwidth}@{}}
+For colors, see 'Color Specification' below \\
+RO = Read Only; PO = set only by calling 'par()' \\
+NDC = Normalized Device Coordinates \\
+
+% -------------------------------------------------------------------
+% I need to break the 'par' parameters up into separate tabular
+% environments, one per column, because, unlike the LaTeX cheatsheet
+% I took this template from, there are more items in the tabular
+% environment than the height of the column in a single page.
+% -------------------------------------------------------------------
+% 'par' column 1
+% -------------------------------------------------------------------
+\setlength{\tabcolsep}{0pt}
+\setlength{\widthleftcol}{0.07\textwidth}
+\setlength{\widthrightcol}{0.25\textwidth}
+\begin{tabular}[t]{@{}p{\widthleftcol}p{\widthrightcol}@{}}
 \hline
 \verb|adj| & 0=left, 0.5=center, 1=right-justified \\
 \verb|ann| & FALSE=no annotation \\
-\verb|bg| & background color (see 'Color Specification') \\
+\verb|bg| & background color \\
 \verb|bty| & box around plots: characters o,1,7,c,u,j,n \\
 \verb|cex| & amount to magnify text and symbols \\
 \verb|cex.axis| & amount to magnify axis annotation relative to cex \\
 \verb|cex.lab| & amount to magnify x \& y labels relative to cex \\
 \verb|cex.main| & amount to magnify main titles relative to cex \\
 \verb|cex.sub| & amount to magnify main sub-titles relative to cex \\
+\verb|cin| & character size in inches (='cra' with different units) RO \\
+\verb|col| & default plotting color \\
+\verb|col.axis| & color for axis annotation \\
+\verb|col.lab| & color for x \& y labels \\
+\verb|col.main| & color for main titles \\
+\verb|col.sub| & color for sub-titles \\
+\verb|cra| & character size in raster units (pixels) RO \\
+\verb|crt| & character rotation in degrees (see 'srt' for strings) \\
+\verb|csi| & character height (size) in inches (=cin[2]) RO \\
+\verb|cxy| & character size (width, height) in user coordinates (par("cxy")=par("cin")/par("pin") scaled to user coords). RO [strwidth() \& strheight() are more precise] \\
+\verb|din| & device dimensions (width, height) in inches RO \\
+\verb|err| & degree of error reporting desired [unimplemented] \\
+\verb|family| & name of font family \\
+\verb|fg| & foreground color \\
+\verb|fig| (PO) & figure region in the display region of the device in NDC; numerical vector c(x1, x2, y1, y2). To add to an existing plot, use new=TRUE. \\
+\verb|fin| (PO) & figure region dimensions (width, height) in inches. Starts a new plot. \\
+\verb|font| & an integer which specifies which font to use. 1 plain; 2 bold; 3 itialic; 4 bold italic; 5 Symbol font. \\
+\verb|font.axis| & font for axis annotation \\
+\verb|font.lab| & font for x \& y labels \\
+\verb|font.main| & font for main titles \\
+\verb|font.sub| & font for sub-titles \\
 \hline
-\verb||
 \end{tabular}
-\vfill\columnbreak
 
+% -------------------------------------------------------------------
+% 'par' column 2
+% -------------------------------------------------------------------
+\begin{tabular}[t]{@{}p{\widthleftcol}p{\widthrightcol}@{}}
+\hline
+\verb|lab| & axis style: 0 parallel; 1 horizontal; 2 perpendicular; 3 vertical \\
+\verb|lend| & line end style, integer or string: 0 or "round""; 1 or "butt""; 2 or "square"" \\
+\verb|lheight| (PO) & line height multiplier \\
+\verb|ljoin| & line join style, integer or string: 0 or "round""; 1 or "mitre""; 2 or "bevel" \\
+\verb|lmitre| & line mitre limit (larger than 1; default 10) \\
+\verb|lty| & line type, integer or string: 0 "blank"; 1 "solid"; 2 "dashed"; 3 "dotted"; 4 "dotdash"; 5 "longdash"; 6 "twodash" \\
+\verb|lwd| & line width; default 1 \\
+\verb|mai| (PO) & margin size in inches; numerical vector c(bottom, left, top, right) \\
+\verb|mar| (PO) & margin size in lines; numerical vector c(bottom, left, top, right); default is c(5,4,4,2)+0.1 \\
+\verb|mex| (PO) & character size expansion factor used to describe coordinates in the margins of plots \\
+\parbox[t]{\widthleftcol}{
+    \texttt{mfcol} \\
+    \texttt{mfrow} (PO)
+    } & number of cols and rows in an array of plots; numerical vector c(nr,nc); try alternatives layout() or split.screen()  \\
+\verb|mfg| (PO) & which figure in an array of figures is being drawn (query) or is to be drawn (set); numerical vector c(i,j); the array must have already been set with mfcol and/or mfrow \\
+\verb|mgp| & margin line (in \verb|mex| units) for the axis title, labels and axis line; numeric vector c(mltitle,mlaxislabels,mlaxisline) \\
+\verb|new| (PO) & if TRUE, don't clean the frame; if FALSE (default), clean the frame before drawing; a warning is issued of the device does not already contain a high-level plot \\
+\verb|oma| (PO) & outer margins in lines of text; numeric vector c(bottom, left, top, right) \\
+\verb|omd| (PO) & region inside outer margins in NDC; numeric vector c(x1,x2,y1,y2) \\
+\verb|omi| (PO) & outer margin size in inches; numeric vector c(x1, x2, y1, y2) \\
+\verb|page| & boolean indicating if the next call to plot.new() will start  a new page. May be FALSE with multiple figures on the page. RO \\
+\verb|pch| & integer specifying a symbol or a character to be used as the default symbol for plotting points. \\
+\hline 
+\end{tabular}
 
+% -------------------------------------------------------------------
+% 'par' column 3
+% -------------------------------------------------------------------
+\begin{tabular}[t]{@{}p{\widthleftcol}p{\widthrightcol}@{}}
+\hline
+\verb|pin| (PO) & plot dimensions in inches; numeric vector c(width, height) \\
+\verb|plt| (PO) & coordinates of the plot region as fractions of the current figure region; numeric vector c(x1, x2, y1, y2) \\
+\verb|ps| (PO) & point size of text (not of point symbols), usually in 1/72 of an inch; integer \\
+\verb|pty| (PO) & plot region type; character: "s" square plot; "m" maximal plot \\
+\verb|srt| & string rotation in degrees (see \verb|crt|); only supported by \verb|text()| \\
+\verb|tck| & tick mark length as a fraction of the smaller of width or height of plotting region; tck=1 draws grid lines; tck=NA (default) $\Rightarrow$ tcl=-0.5 \\
+\verb|tcl| & tick mark length as a fraction of the height of a line of text; default -0.5; tcl=NA $\Rightarrow$ tck=-0.01 \\
+\verb|usr| (PO) & extremes of the user coordinates of the plotting region; numeric vector c(x1, x2, y1, y2); for log scales, x-limits will be 10 \textasciicircum \ par("usr")[1:2] (y-limits will be [3:4]) \\
+\verb|xaxp| & \parbox[t]{\widthrightcol}{
+non-log scale: extreme tick-marks and number of intervals \\
+log scale: lowest and highest power of 10 inside the user coordinates and n=1 marks at 10 \textasciicircum \ j for integerj; n=2 marks at k 10 \textasciicircum \ j with k in \{1,5\}; n=3 marks at 10 \textasciicircum \ j with k in \{1,2,5\} \\
+numeric vector c(x1, x2, n)
+} \\
+\verb|xaxs| & style of x-axis interval calculation: "r" regular; "i" internal \\
+\verb|xaxt| & x-axis type; "n" no axis plotting; "s" standard \\
+\verb|xlog| (PO) & x-axis log scale boolean \\
+\verb|xpd| & plot clipping: FALSE plot region; TRUE figure region; NA device region \\
+\verb|yaxp| & \parbox[t]{\widthrightcol}{
+non-log scale: extreme tick-marks and number of intervals \\
+log scale: see \texttt{xaxp} above \\
+numeric vector c(y1, y2, n)
+} \\
+\verb|yaxs| & style of y-axis interval calculation: "r" regular; "i" internal \\
+\verb|yaxt| & y-axis type; "n" no axis plotting; "s" standard \\
+\verb|ylbias| (PO) & used in the positioning of text in the margins by \verb|axis()| and \verb|mtext()|; set to 0.2 \\
+\verb|ylog| (PO) & y-axis log scale boolean \\
+\hline
+\end{tabular}
 
 \end{multicols}
+
+
+\newpage
+
+\section{Base Package Plotting Functions}
+
+\setlength{\widthleftcol}{0.4\textwidth}
+\setlength{\widthrightcol}{0.6\textwidth}
+\begin{tabular}[t]{@{}p{\widthleftcol}p{\widthrightcol}@{}}
+\parbox[t]{\widthleftcol}{
+    \raggedright
+    \texttt{text(x, y=NULL,labels=seq\_along(x), 
+        adj=NULL, 
+        pos=NULL, 
+        offset=0.5, 
+        vfont=NULL, 
+        cex=1, col=NULL, font=NULL,...)
+    }
+}
+ & 
+\parbox[t]{\widthrightcol}{
+    \raggedright
+    draws strings in vector labels at pt. x, y
+} \\
+\parbox[t]{\widthleftcol}{
+    \raggedright
+    \texttt{points(x, y=NULL, type="p", ...)}
+} & get help //
+\end{tabular}
+
+\section{Color Specification}
+Color
