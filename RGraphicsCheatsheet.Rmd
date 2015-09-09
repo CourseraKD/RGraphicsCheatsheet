@@ -28,6 +28,7 @@ classoption: landscape
 \begin{multicols}{3}[\section{Base Package Graphics}]
 \raggedcolumns
 
+\newlength{\tabularwidth}
 \newlength{\widthleftcol}
 \newlength{\widthrightcol}
 \section{par}
@@ -36,16 +37,18 @@ RO = Read Only; PO = set only by calling 'par()' \\
 NDC = Normalized Device Coordinates \\
 
 % -------------------------------------------------------------------
-% I need to break the 'par' parameters up into separate tabular
-% environments, one per column, because, unlike the LaTeX cheatsheet
+% I need to break this info up into separate tabular environments, 
+% one per column because, unlike the LaTeX cheatsheet
 % I took this template from, there are more items in the tabular
 % environment than the height of the column in a single page.
 % -------------------------------------------------------------------
 % 'par' column 1
 % -------------------------------------------------------------------
 \setlength{\tabcolsep}{0pt}
-\setlength{\widthleftcol}{0.07\textwidth}
-\setlength{\widthrightcol}{0.25\textwidth}
+\setlength{\tabularwidth}{0.33\textwidth}
+\setlength{\widthleftcol}{0.21\tabularwidth}
+\setlength{\widthrightcol}{\tabularwidth}
+\addtolength{\widthrightcol}{-\widthleftcol}
 \begin{tabular}[t]{@{}p{\widthleftcol}p{\widthrightcol}@{}}
 \hline
 \verb|adj| & 0=left, 0.5=center, 1=right-justified \\
@@ -84,6 +87,11 @@ NDC = Normalized Device Coordinates \\
 % -------------------------------------------------------------------
 % 'par' column 2
 % -------------------------------------------------------------------
+\setlength{\tabcolsep}{0pt}
+\setlength{\tabularwidth}{0.33\textwidth}
+\setlength{\widthleftcol}{0.21\tabularwidth}
+\setlength{\widthrightcol}{\tabularwidth}
+\addtolength{\widthrightcol}{-\widthleftcol}
 \begin{tabular}[t]{@{}p{\widthleftcol}p{\widthrightcol}@{}}
 \hline
 \verb|lab| & axis style: 0 parallel; 1 horizontal; 2 perpendicular; 3 vertical \\
@@ -114,6 +122,11 @@ NDC = Normalized Device Coordinates \\
 % -------------------------------------------------------------------
 % 'par' column 3
 % -------------------------------------------------------------------
+\setlength{\tabcolsep}{0pt}
+\setlength{\tabularwidth}{0.33\textwidth}
+\setlength{\widthleftcol}{0.21\tabularwidth}
+\setlength{\widthrightcol}{\tabularwidth}
+\addtolength{\widthrightcol}{-\widthleftcol}
 \begin{tabular}[t]{@{}p{\widthleftcol}p{\widthrightcol}@{}}
 \hline
 \verb|pin| (PO) & plot dimensions in inches; numeric vector c(width, height) \\
@@ -152,8 +165,11 @@ numeric vector c(y1, y2, n)
 
 \section{Base Package Plotting Functions}
 
-\setlength{\widthleftcol}{0.4\textwidth}
-\setlength{\widthrightcol}{0.6\textwidth}
+\setlength{\tabcolsep}{0pt}
+\setlength{\tabularwidth}{1.0\textwidth}
+\setlength{\widthleftcol}{0.4\tabularwidth}
+\setlength{\widthrightcol}{\tabularwidth}
+\addtolength{\widthrightcol}{-\widthleftcol}
 \begin{tabular}[t]{@{}p{\widthleftcol}p{\widthrightcol}@{}}
 \parbox[t]{\widthleftcol}{
     \raggedright
